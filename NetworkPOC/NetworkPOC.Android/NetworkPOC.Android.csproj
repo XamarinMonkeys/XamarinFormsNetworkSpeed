@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -92,7 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NetworkPOC\NetworkPOC.csproj">
-      <Project>{FBECB005-EF0A-49B2-BA0B-40D5FDB2BBBE}</Project>
+      <Project>{4FCDC772-E1A4-40E4-BCC7-1D7793973D49}</Project>
       <Name>NetworkPOC</Name>
     </ProjectReference>
   </ItemGroup>

@@ -19,14 +19,18 @@ namespace NetworkPOC
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            bool isConnected = DependencyService.Get<INetwork>().IsConnected();
-            if (isConnected)
+           // bool isConnected = DependencyService.Get<INetwork>().IsConnected();
+            if (false)
             {
                 bool isConnectionFast = DependencyService.Get<INetwork>().IsConnectedFast();
                 if(isConnectionFast)
                     DependencyService.Get<IToast>().ShowToast("Network Connection is good");
                 else
                     DependencyService.Get<IToast>().ShowToast("Network Connection is slow");
+            }
+            else
+            {
+                DependencyService.Get<IToast>().ShowToast("No Internet Connection");
             }
         }
     }
