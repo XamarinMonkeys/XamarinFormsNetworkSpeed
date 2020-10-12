@@ -1,45 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Essentials;
+using NetworkPOC.iOS;
 using System.Net.Http;
-namespace NetworkPOC
+using UIKit;
+[assembly: Xamarin.Forms.Dependency(typeof(NetworkHelper))]
+namespace NetworkPOC.iOS
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
-    [DesignTimeVisible(false)]
-    public partial class MainPage : ContentPage
+    public class NetworkHelper: INetwork
     {
-        public MainPage()
+
+        public bool IsConnected()
         {
-            InitializeComponent();
+            return true;
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        public bool IsConnectedFast()
         {
-            var current = Connectivity.NetworkAccess;
+            
+             CheckInternetSpeed();
+            return true;
 
-            if (current == NetworkAccess.Internet)
-            {
-                ///To Do: Following Code for Android Native Method
-                //bool isConnectionFast = DependencyService.Get<INetwork>().IsConnectedFast();
-                //if (isConnectionFast)
-                //    DependencyService.Get<IToast>().ShowToast("Network Connection is good");
-                //else
-                //    DependencyService.Get<IToast>().ShowToast("Network Connection is slow");
-
-                ///To Do following method supports both
-                var speed=await CheckInternetSpeed();
-                
-            }
-            else
-            {
-                DependencyService.Get<IToast>().ShowToast("No Internet Connection");
-            }
         }
 
         public async Task<string> CheckInternetSpeed()
