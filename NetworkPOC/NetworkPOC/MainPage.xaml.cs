@@ -34,7 +34,8 @@ namespace NetworkPOC
 
                 ///To Do following method supports both
                 var speed=await CheckInternetSpeed();
-                
+                DependencyService.Get<IToast>().ShowToast(speed);
+
             }
             else
             {
@@ -49,14 +50,11 @@ namespace NetworkPOC
             try
             {
                 var client = new HttpClient();
-                //Number Of Bytes Downloaded Are Stored In ‘data’
-                byte[] data = await client.GetByteArrayAsync("http://xamarinmonkeys.blogspot.com/");
-                //DateTime Variable To Store Download End Time.
+                byte[] data = await client.GetByteArrayAsync("https://qa2mg.sisystems.com/");
                 DateTime dt2 = DateTime.Now;
-                //To Calculate Speed in Kb Divide Value Of data by 1024 And Then by End Time Subtract Start Time To Know Download Per Second.
                 Console.WriteLine("ConnectionSpeed: DataSize (kb) " + data.Length / 1024);
                 Console.WriteLine("ConnectionSpeed: ElapsedTime (secs) " + (dt2 - dt1).TotalSeconds);
-                internetSpeed = "ConnectionSpeed: (kb/s) " + Math.Round((data.Length / 1024) / (dt2 - dt1).TotalSeconds, 2);
+                internetSpeed = "ConnectionSpeed: (kb/s) " + Math.Round((data.Length / 1024) / (dt2 - dt1).TotalSeconds,2);
             }
             catch (Exception ex)
             {
