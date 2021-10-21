@@ -22,7 +22,6 @@ namespace NetworkPOC
         private async void Button_Clicked(object sender, EventArgs e)
         {
             var current = Connectivity.NetworkAccess;
-
             if (current == NetworkAccess.Internet)
             {
                 ///To Do: Following Code for Android Native Method
@@ -35,14 +34,13 @@ namespace NetworkPOC
                 ///To Do following method supports both
                 var speed=await CheckInternetSpeed();
                 DependencyService.Get<IToast>().ShowToast(speed);
-
             }
             else
             {
                 DependencyService.Get<IToast>().ShowToast("No Internet Connection");
             }
         }
-
+        //Check Internet speed
         public async Task<string> CheckInternetSpeed()
         {
             DateTime dt1 = DateTime.Now;
@@ -50,7 +48,7 @@ namespace NetworkPOC
             try
             {
                 var client = new HttpClient();
-                byte[] data = await client.GetByteArrayAsync("https://qa2mg.sisystems.com/");
+                byte[] data = await client.GetByteArrayAsync("http://google.com/");
                 DateTime dt2 = DateTime.Now;
                 Console.WriteLine("ConnectionSpeed: DataSize (kb) " + data.Length / 1024);
                 Console.WriteLine("ConnectionSpeed: ElapsedTime (secs) " + (dt2 - dt1).TotalSeconds);
@@ -58,7 +56,7 @@ namespace NetworkPOC
             }
             catch (Exception ex)
             {
-                internetSpeed = "ConnectionSpeed:Unknown Exception-" + ex.Message;
+                internetSpeed = "ConnectionSpeed:Unknown Exception: " + ex.Message;
             }
             Console.WriteLine(internetSpeed);
             return internetSpeed;
